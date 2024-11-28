@@ -1,15 +1,35 @@
-// Get references to button and video
+// Get references to the button and video
 const playButton = document.getElementById("playButton");
-const videoContainer = document.getElementById("videoContainer");
 const promoVideo = document.getElementById("promoVideo");
 
-// Add event listener to the button
+// Function to open video in full screen
 playButton.addEventListener("click", () => {
-  // Unhide the video container
-  videoContainer.classList.remove("hidden");
-  
-  // Play the video
-  promoVideo.play();
+  promoVideo.classList.remove("hidden"); // Show the video
+  promoVideo.play(); // Start playing the video
+
+  // Request full screen
+  if (promoVideo.requestFullscreen) {
+    promoVideo.requestFullscreen();
+  } else if (promoVideo.webkitRequestFullscreen) {
+    promoVideo.webkitRequestFullscreen(); // For Safari
+  } else if (promoVideo.msRequestFullscreen) {
+    promoVideo.msRequestFullscreen(); // For IE/Edge
+  }
+});
+
+// Function to hide video after it finishes
+promoVideo.addEventListener("ended", () => {
+  promoVideo.pause(); // Pause the video (just in case)
+  promoVideo.classList.add("hidden"); // Hide the video
+
+  // Exit full screen
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen(); // For Safari
+  } else if (document.msExitFullscreen) {
+    document.msExitFullscreen(); // For IE/Edge
+  }
 });
 
 
