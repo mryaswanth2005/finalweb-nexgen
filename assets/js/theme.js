@@ -1,10 +1,17 @@
-/*
-Template Name: Opixo - Tailwind CSS Multipurpose Landing Page Template
-Version: 1.0
-Author: coderthemes
-Email: support@coderthemes.com
-File: theme.js
-*/
+// Get references to button and video
+const playButton = document.getElementById("playButton");
+const videoContainer = document.getElementById("videoContainer");
+const promoVideo = document.getElementById("promoVideo");
+
+// Add event listener to the button
+playButton.addEventListener("click", () => {
+  // Unhide the video container
+  videoContainer.classList.remove("hidden");
+  
+  // Play the video
+  promoVideo.play();
+});
+
 
 // Lucid Icons
 lucide.createIcons();
